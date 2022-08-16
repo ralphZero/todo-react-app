@@ -1,17 +1,17 @@
 import React from 'react';
-import { PageHeader, Avatar } from 'antd';
+import { Space, Avatar, Layout } from 'antd';
 import { UserOutlined } from '@ant-design/icons'
+import AddButton from './AddButton';
 
 const Header = () => {
     return (
-        <PageHeader
-          className="page-header"
-          title="TO DO APP"
-          subTitle="Yep! Another one"
-          extra={[
+      <Layout.Header  style={{ position: 'fixed', zIndex: 1, width: '100%' }} className="page-header">
+        <div>Todo App</div>
+        <Space size={10}>
+            <AddButton />,
             <Avatar icon={<UserOutlined />} />
-          ]}
-        />
+        </Space>
+      </Layout.Header>
     );
 }
 

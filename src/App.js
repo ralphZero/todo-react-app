@@ -1,28 +1,35 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { Layout, Row, Col } from 'antd';
 
-import AddButton from './components/AddButton';
 import Header from './components/Header';
 
-import './App.css';
 import ModalContextProvider from './contexts/ModalContext';
+import TodoCard from './components/TodoCard';
 
-const { Content, Footer } = Layout;
+import './App.css';
+
+const { Content } = Layout;
+
 
 function App() {
   return (
-    <Layout className='container'>
-      <Header />
-      <Content style={{ padding: '0 50px',}}>
-        Main Content
-      </Content>
-      
+    <Layout>
       <ModalContextProvider>
-        <Footer className="bg-warning">
-          <AddButton />
-        </Footer>
+        <Header />
       </ModalContextProvider>
-      
+      <Content style={{ padding: '15px 50px', marginTop: 64, backgroundColor: '#ececec', }}>
+        <div className='todo-container'>
+          <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
+            {Array(15).fill().map((elem) => (
+              <Col key={elem} className="gutter-row" span={6}>
+                <TodoCard />
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </Content>
+
+
     </Layout>
   );
 }
