@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { PlusOutlined } from '@ant-design/icons'
 import { Button, Modal, Form, Input } from 'antd';
 
+import { ModalContext } from '../contexts/ModalContext';
+
+
 const AddCommentForm = () => {
-    const [modalVisible, setModalVisible] = useState(false);
+
+    const { isVisible, toggleModal } = useContext(ModalContext);
+
     return (
         <>
-            <Button type="primary" shape="round" icon={<PlusOutlined />} size="large">
+            <Button onClick={toggleModal} type="primary" shape="round" icon={<PlusOutlined />} size="large">
                 NEW
             </Button>
             <Modal
                 title="Add new item"
-                visible={modalVisible}
+                visible={isVisible}
                 footer={null}
+                onCancel={toggleModal}
                 okButtonProps={{
                     hidden: true,
                 }}
