@@ -3,6 +3,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import { Button, Modal, Form, Input } from 'antd';
 
 import { ModalContext } from '../contexts/ModalContext';
+import { DataContext } from '../contexts/DataContext';
 
 
 const AddCommentForm = () => {
@@ -10,22 +11,37 @@ const AddCommentForm = () => {
     const { isVisible, toggleModal } = useContext(ModalContext);
     const [ isBusy, setBusy ] = useState(false);
 
-    const onFinish = (values) => {
-        setBusy(true);
-        console.log('Success', values);
-        setTimeout(() => {
+    const { addToList } = useContext(DataContext);
+
+    const saveToFirestore = (data) => {
+        setBusy(true); // showing loading animation
+
+        fetch('https://us-central1-todo-app-rsp.cloudfunctions.net/todo', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(doc => {
+            addToList(doc);
             toggleModal();
             setBusy(false);
-        }, 2000);
-        
+        }).catch((err) => {
+            console.error(err);
+            setBusy(false);
+        })
     }
+
+    const onFinish = (values) => saveToFirestore(values);
 
     const onFinishFailed = (errorInfo) => {
         setBusy(true)
         console.log('Failed' + errorInfo);
         setTimeout(() => {
             setBusy(false);
-        }, 2000);
+        }, 1000);
     }
 
     return (

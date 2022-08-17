@@ -19,3 +19,17 @@ body, #root, .container {
   display: flex;
   justify-content: space-between;
 }
+.ant-layout {
+  height: 100%;
+}
+.ant-layout-content {
+  height: 100%;
+}
+.empty-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todo-container {
+  height: 100%;
+}
