@@ -13,11 +13,10 @@ const TodoContainer = () => {
           
             { 
                 dataList === undefined || ( dataList && dataList.length === 0 ) ?  
-                <div className='empty-container'>
-                  <Empty/> 
-                </div>
+                  <div className='empty-container'>
+                    <Empty/> 
+                  </div>
                 : 
-                
                   <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
                     {dataList.map((todo) => {
                       return (
