@@ -17,14 +17,14 @@ function App() {
   return (
     <UserContextProvider>
       <DataContextProvider>
-        <Layout>
-          <ModalContextProvider>
+        <ModalContextProvider>
+          <Layout>
             <Header />
-          </ModalContextProvider>
-          <Content style={{ padding: '15px 50px', marginTop: 64, backgroundColor: '#ececec', }}>
-            <TodoContainer />
-          </Content>
-        </Layout>
+            <Content style={{ padding: '15px 50px', marginTop: 64, backgroundColor: '#ececec', }}>
+              <TodoContainer />
+            </Content>
+          </Layout>
+        </ModalContextProvider>
       </DataContextProvider>
     </UserContextProvider>
   );
