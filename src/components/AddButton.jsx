@@ -4,6 +4,7 @@ import { Button, Modal, Form, Input } from 'antd';
 
 import { ModalContext } from '../contexts/ModalContext';
 import { DataContext } from '../contexts/DataContext';
+import { UserContext } from '../contexts/UserContext';
 
 
 const AddCommentForm = () => {
@@ -12,6 +13,7 @@ const AddCommentForm = () => {
     const [ isBusy, setBusy ] = useState(false);
 
     const { addToList, addToListAtPositon } = useContext(DataContext);
+    const { user } = useContext(UserContext);
 
     useEffect(() => {
         if(payload) {
@@ -34,13 +36,13 @@ const AddCommentForm = () => {
 
     const saveToFirestore = (data) => {
         setBusy(true); // showing loading animation
-
+        const newData = {...data, uid: user.uid};
         fetch('https://us-central1-todo-app-rsp.cloudfunctions.net/todo', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(newData)
         })
         .then(res => res.json())
         .then(doc => {

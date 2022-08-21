@@ -11,7 +11,7 @@ const DataContextProvider = (props) => {
     
     useEffect(() => {
         if(user) {
-            fetch('https://us-central1-todo-app-rsp.cloudfunctions.net/todo?u='+user.uid)
+            fetch('https://us-central1-todo-app-rsp.cloudfunctions.net/todo/'+user.uid)
             .then(res => res.json())
             .then(data => setDataList(data))
             .catch(console.error)
