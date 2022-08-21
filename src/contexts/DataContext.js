@@ -31,8 +31,15 @@ const DataContextProvider = (props) => {
         setDataList(tempList);
     }
 
+    const deleteAtPostion = (data) => {
+        const tempList = [...dataList];
+        const index = tempList.findIndex((todo) => todo.id === data.id);
+        tempList.splice(index, 1);
+        setDataList(tempList);
+    }
+
     return (
-        <DataContext.Provider value={{ dataList, addToList, addToListAtPositon }}>
+        <DataContext.Provider value={{ dataList, addToList, addToListAtPositon, deleteAtPostion }}>
             { props.children }
         </DataContext.Provider>
     )
