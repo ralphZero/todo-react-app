@@ -29,6 +29,7 @@ body, #root, .container {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 .todo-container {
   height: 100%;

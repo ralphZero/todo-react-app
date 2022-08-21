@@ -29,7 +29,7 @@ const TodoCard = ({ todo }) => {
 
     return (
         <Card
-            title={todo.title}
+            title={<Tooltip title={todo.title}>{todo.title}</Tooltip>}
             bordered={false}
             style={{
                 width: 300,

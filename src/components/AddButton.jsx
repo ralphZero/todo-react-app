@@ -48,6 +48,7 @@ const AddCommentForm = () => {
         .then(doc => {
             addToList(doc);
             toggleModal();
+            setPayload(null);
             setBusy(false);
         }).catch((err) => {
             console.error(err);
@@ -69,6 +70,7 @@ const AddCommentForm = () => {
         .then(doc => {
             addToListAtPositon(doc);
             toggleModal();
+            setPayload(null);
             setBusy(false);
         }).catch((err) => {
             console.error(err);
@@ -86,6 +88,11 @@ const AddCommentForm = () => {
         }, 1000);
     }
 
+    const onCancel = () => {
+        toggleModal();
+        setPayload(null);
+    }
+
     return (
         <>
             <Button onClick={openModal} type="primary" shape="round" icon={<PlusOutlined />} size="large">
@@ -95,7 +102,7 @@ const AddCommentForm = () => {
                 title={payload ? 'Modify item' : 'Add new item'}
                 visible={isVisible}
                 footer={null}
-                onCancel={toggleModal}
+                onCancel={onCancel}
                 confirmLoading={true}
                 okButtonProps={{hidden: true}}
                 cancelButtonProps={{hidden: true}}>
